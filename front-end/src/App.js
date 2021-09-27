@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BackTracking, BruteForce, DivideAndConquer, DynamicAndProgramming, Greedy } from 'algorithm/index';
+import { Home, Counter } from 'common/index';
+import { Linear, Mathematics, NonLinear } from 'datastructure/index';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import { Menu } from 'common/index';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = () => {
+  return(
+    <>
+  <Menu/>
+  <Switch>
+    <Route exact path = '/' component = {Home}/>
+      <Redirect from = '/home' to = {'/'}/>
+      <Route exact path = '/counter' component = {Counter}/>
+      <Route exact path = '/backtracking' component = {BackTracking}/>
+      <Route exact path = '/bruteforce' component = {BruteForce}/>
+      <Route exact path = '/divide' component = {DivideAndConquer}/>
+      <Route exact path = '/dynamic' component = {DynamicAndProgramming}/>
+      <Route exact path = '/greedy' component = {Greedy}/>
+      <Route exact path = '/linear' component = {Linear}/>
+      <Route exact path = '/math' component = {Mathematics}/>
+      <Route exact path = '/nonlinear' component = {NonLinear}/>
+  </Switch>
+  </>
+  )
+  
 }
 
 export default App;
