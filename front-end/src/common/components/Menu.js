@@ -2,10 +2,13 @@ import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
+
 const Menu = () => {
     return(
     <Nav>
         <NavList>
+            <NavItem><Link to = '/counter'>Counter</Link></NavItem>
+            <NavItem><Link to = '/todo'>Todo</Link></NavItem>
             <NavItem><Link to = '/math'>Mathematics</Link></NavItem>
             <NavItem><Link to = '/linear'>Linear</Link></NavItem>
             <NavItem><Link to = '/nonlinear'>NonLinear</Link></NavItem>
