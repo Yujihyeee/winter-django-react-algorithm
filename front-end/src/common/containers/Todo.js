@@ -5,19 +5,17 @@ import styled from 'styled-components'
 
 export default function Todo () {
     const [todo, setTodo] = useState('')
-    let val= ''
+
+    const submitForm = e =>{
+        e.preventDefault()
+    }
+
     const add = e => {
         e.preventDefault()
-        val = e.target.value
     }
+
     const del = e => {
         e.preventDefault()
-        setTodo('')
-    }
-    const submitForm = e => {
-        e.preventDefault()
-        setTodo(val)
-        document.getElementById('todo-input').value = ''
     }
 
     return(
