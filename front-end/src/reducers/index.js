@@ -1,1 +1,1 @@
-export {default as todoReducer} from 'reducers/todoReducer'
+export {default as todoReducer} from 'reducers/todo.Reducer'

@@ -4,17 +4,15 @@ import { Home, Counter, Todo } from 'common/index';
 import { Linear, Mathematics, NonLinear } from 'datastructure/index';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import { Menu } from 'common/index';
-import {createStore} from "redux"
+import {combineReducers, createStore} from "redux"
 import { Provider } from 'react-redux'
 import rootReducder from 'reducers'
-import { Router } from '@material-ui/icons';
 
+const rootReducder = combineReducers({todoReducer})
 const store = createStore(rootReducder)
 
 const App = () => {
   return(
-  <>
-  <Router>
     <Provider store={store}>
       <Menu/>
       <Switch>
@@ -32,8 +30,6 @@ const App = () => {
           <Route exact path = '/nonlinear' component = {NonLinear}/>
       </Switch>
     </Provider>
-  </Router>
-</>
   )
   
 }
