@@ -9,14 +9,16 @@ const Menu = () => {
         <NavList>
             <NavItem><Link to = '/counter'>Counter</Link></NavItem>
             <NavItem><Link to = '/todo'>Todo</Link></NavItem>
+            <NavItem><Link to = '/userlist'>UserList</Link></NavItem>
+            <NavItem><Link to = '/userjoin'>UserJoin</Link></NavItem>
             <NavItem><Link to = '/math'>Mathematics</Link></NavItem>
             <NavItem><Link to = '/linear'>Linear</Link></NavItem>
             <NavItem><Link to = '/nonlinear'>NonLinear</Link></NavItem>
             <NavItem><Link to = '/bruteforce'>BruteForce</Link></NavItem>
             <NavItem><Link to = '/divide'>DivideAndConquer</Link></NavItem>
             <NavItem><Link to = '/greedy'>Greedy</Link></NavItem>
-            <NavItem><Link to = 'dynamic'>DynamicAndProgramming</Link></NavItem>
-            <NavItem><Link to = 'backtracking'>BackTracking</Link></NavItem>
+            <NavItem><Link to = '/dynamic'>DynamicAndProgramming</Link></NavItem>
+            <NavItem><Link to = '/backtracking'>BackTracking</Link></NavItem>
         </NavList>
     </Nav>
     )

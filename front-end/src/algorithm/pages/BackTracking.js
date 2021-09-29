@@ -1,12 +1,9 @@
 import React from "react";
 
-
 const BackTracking = () => {
-    return(
-        <h1>
+    return(<>
         BackTracking
-        </h1>
-    )
+    </>)
    
 }
 
