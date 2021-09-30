@@ -47,12 +47,13 @@ export default function UserJoin() {
     e.preventDefault();
     alert(`가입 정보: ${JSON.stringify(user)}`)
     UserRegister({...user})
+    .then(res => {alert(`회원가입완료: ${res.data.result}`)})
+    .catch(err => {alert(`회원가입 실패: ${err}`)})
   }
 
   const handleChange = e => {
     e.preventDefault()
     const { name, value } = e.terget
-    alert(`name: ${name}, value: ${value}`)
     setUser({
       ...user,
       [name]: value
