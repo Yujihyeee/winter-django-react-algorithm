@@ -15,6 +15,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux'
 import { addUserAction } from 'reducers/user.reducer'
+import { UserRegister } from 'api';
 
 function Copyright(props) {
   return (
@@ -35,18 +36,19 @@ export default function UserJoin() {
   const [user, setUser] = useState({
     username: '',
     password: '',
+    name: '',
     email: '',
     birth: '',
     address: ''
   })
-  const { username, birth, address, email, password } = `user`
-  const dispatch = useDispatch()
+  const { username, birth, name, address, email, password } = `user`
+
   const handleSubmit = e => {
     e.preventDefault();
     alert(`가입 정보: ${JSON.stringify(user)}`)
-    addUser(user)
+    UserRegister({...user})
   }
-  const addUser = payload => (dispatch(addUserAction(payload)))
+
   const handleChange = e => {
     e.preventDefault()
     const { name, value } = e.terget
@@ -85,7 +87,6 @@ export default function UserJoin() {
               type="text"
               id="username"
               value = {username}
-              autoComplete="current-password"
               onChange = {handleChange}
             />
             <TextField
@@ -97,7 +98,17 @@ export default function UserJoin() {
               type="password"
               id="password"
               value = {password}
-              autoComplete="current-password"
+              onChange = {handleChange}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="name"
+              label="name"
+              type="text"
+              id="name"
+              value = {name}
               onChange = {handleChange}
             />
             <TextField
@@ -122,7 +133,6 @@ export default function UserJoin() {
               type="text"
               id="birth"
               value = {birth}
-              autoComplete="current-password"
               onChange = {handleChange}
             />
             <TextField
@@ -134,7 +144,6 @@ export default function UserJoin() {
               type="text"
               id="address"
               value = {address}
-              autoComplete="current-password"
               onChange = {handleChange}
             />
             <FormControlLabel
