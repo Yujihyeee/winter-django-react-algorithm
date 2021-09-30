@@ -7,6 +7,7 @@ const Menu = () => {
     return(
     <Nav>
         <NavList>
+            <NavItem><Link to = '/home'>Home</Link></NavItem>
             <NavItem><Link to = '/counter'>Counter</Link></NavItem>
             <NavItem><Link to = '/todo'>Todo</Link></NavItem>
             <NavItem><Link to = '/userlist'>UserList</Link></NavItem>
