@@ -45,15 +45,15 @@ export default function UserJoin() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    alert(`가입 정보: ${JSON.stringify(user)}`)
-    UserRegister({...user})
+    alert(`가입 정보: ${JSON.stringify(user)}`) //자연어처리를 위한 명령어
+    UserRegister({user})
     .then(res => {alert(`회원가입완료: ${res.data.result}`)})
     .catch(err => {alert(`회원가입 실패: ${err}`)})
   }
 
   const handleChange = e => {
     e.preventDefault()
-    const { name, value } = e.terget
+    const { name, value } = e.target
     setUser({
       ...user,
       [name]: value
@@ -76,7 +76,7 @@ export default function UserJoin() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -121,7 +121,6 @@ export default function UserJoin() {
               label="Email Address"
               name="email"
               value = {email}
-              autoComplete="email"
               autoFocus
               onChange = {handleChange}
             />

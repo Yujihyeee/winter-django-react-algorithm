@@ -11,10 +11,10 @@ export default function Home(){
         .catch(err => {alert(`접속실패 : ${err}`)})
     }
     return(
-        <div>
-            <button onClick={handelClick}>Connection</button>
-    <SignIn/>
-    </div>
+        <>
+        <button onClick={handelClick}>Connection</button>
+        <SignIn/>
+    </>
     )
     
 }

@@ -1,35 +1,14 @@
-import { Button , TextField } from "@mui/material";
-import React, {useState} from "react";
+import React from "react";
 import styled from 'styled-components'
+import { TodoList, TodoInput } from 'common'
 
-
-export default function Todo () {
-    const [todo, setTodo] = useState('')
-    let val = ''
-    const submitForm = e =>{
-        e.preventDefault()
-        setTodo(val)
-        document.getElementById('todo-input').value = ''
-    }
-
-    const add = e => {
-        e.preventDefault()
-        val = e.target.value
-    }
-
-    const del = e => {
-        e.preventDefault()
-        setTodo('')
-    }
-
+export default function Todo() {
     return(
-        <form onSubmit={submitForm} method='POST'>
-        <Tododiv>
-            <input type='text' id='todo-input' onChange={add}/>
-            <input type='submit' value='ADD'/><br/>
-            <span>{todo}</span>
-            <input type='button' onClick={del} value='DEL'/>
-        </Tododiv></form>)
+        <TodoDiv>
+            <TodoInput/>
+            <TodoList/>
+        </TodoDiv>
+    )
 }
 
-const Tododiv = styled.div`text-align: center;`
+const TodoDiv = styled.div` text-align: center; `

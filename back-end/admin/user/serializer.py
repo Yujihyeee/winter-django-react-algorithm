@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import UserVo as user
+from .models import Member as user
 
 
 class UserSerializer(serializers.Serializer):
@@ -14,8 +14,8 @@ class UserSerializer(serializers.Serializer):
         model = user
         fileds = '__all__'
 
-    def create(self, valided_data):
-        return user.objects.create(**valided_data)
+    def create(self, valideted_data):
+        return user.objects.create(**valideted_data)
 
-    def update(self, instance, validad_data):
-        user.objects.filter(pk=instance.username).update(**validad_data)
+    def update(self, instance, valideted_data):
+        user.objects.filter(pk=instance.username).update(**valideted_data)
