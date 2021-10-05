@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
-from icecream import ic
 from admin.housing.models import HousingService
 import matplotlib.pyplot as plt
 
@@ -10,7 +9,8 @@ import matplotlib.pyplot as plt
 @parser_classes([JSONParser])
 def housing_info(request):
     HousingService().housing_info()
-    return JsonResponse({'result': "Housing SUCCESS"})
+    return JsonResponse({'result': "Housing Info SUCCESS"})
+
 
 def housing_hist(request):
     HousingService.housing_info()

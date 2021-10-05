@@ -11,11 +11,12 @@ from icecream import ic
 class HousingService(object):
 
     def __init__(self):
-        self.model = DFrameGenerator()
-        self.model.dframe = 'admin/housing/data/housing.csv'
+        self.dfg = DFrameGenerator()
+        self.dfg.fname = 'admin/housing/data/housing.csv'
+        self.df = self.dfg.create_model()
 
     def housing_info(self):
-        self.model.dframe_info()
+        self.dfg.model_info(self.df)
 
     def housing_hist(self):
         self.model.dframe.hist(bins= 50, figsize=(20, 15))

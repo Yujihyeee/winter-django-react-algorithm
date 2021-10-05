@@ -19,6 +19,6 @@ from admin.common.views import connection
 urlpatterns = [
     path('api/connect', include('admin.common.urls')),
     path('api/users/', include('admin.user.urls')),
-    path('api/housing', include('admin.housing.urls'))
+    path('api/housing/', include('admin.housing.urls'))
 
 ]
