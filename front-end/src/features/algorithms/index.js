@@ -1,0 +1,5 @@
+export {default as BackTracking} from 'features/algorithms/containers/BackTracking'
+export {default as BruteForce} from 'features/algorithms/containers/BruteForce'
+export {default as DivideAndConquer} from 'features/algorithms/containers/DivideAndConquer'
+export {default as DynamicAndProgramming} from 'features/algorithms/containers/DynamicAndProgramming'
+export {default as Greedy} from 'features/algorithms/containers/Greedy'
