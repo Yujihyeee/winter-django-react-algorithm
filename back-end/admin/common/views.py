@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import JsonResponse
 
+
 @api_view(['GET'])
 @parser_classes([JSONParser])
 def connection(request):
