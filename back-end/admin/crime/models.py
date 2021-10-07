@@ -52,10 +52,10 @@ class CrimeCctvModel():
             gu_name = [gu for gu in temp if gu[-1] == '구'][0]
             gu_names.append(gu_name)
         crime['구별'] = gu_names
-        #  구와 경찰서의 위치가 다른 경우 수작업
-        crime.loc[crime['관서명'] == '혜화서', ['구별']] == '종로구'
-
-        # crime.to_csv(self.dfg.context + 'new_data/police_positions.csv')
+        print('======================================================')
+        print(f"샘플 중 혜화서 정보: {crime[crime['관서명'] == '혜화서']}")
+        print(f"샘플 중 금천서 정보: {crime[crime['관서명'] == '금천서']}")
+        #  crime.to_csv(self.vo.context + 'new_data/police_positions.csv')
 
     def create_cctv_model(self):
         vo = self.vo
@@ -78,3 +78,8 @@ class CrimeCctvModel():
         pop_model = reader.xls(pop_file_name, 2, 'b,d,g,j,n')
         printer.dframe(pop_model)
         return pop_model
+
+    def rename_pop(self):
+        pop = self.create_population_model()
+        reader = self.reader
+        
