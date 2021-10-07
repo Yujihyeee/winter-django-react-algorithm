@@ -7,7 +7,7 @@ import googlemaps
 
 
 @dataclass
-class DFrameGenerator(object):
+class ValueObject(object):
 
     train: object
     test: object
