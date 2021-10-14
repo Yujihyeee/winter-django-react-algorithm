@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 
-from admin.crime.models_old import CrimeCctvModel
+from admin.crime.models import CrimeCctvModel
 
 
 @api_view(['GET'])
@@ -39,3 +39,10 @@ def merge_cctv_pop(request):
 def merge_cctv_position(request):
     CrimeCctvModel().merge_cctv_position()
     return JsonResponse({'result': "merge_cctv_position Success"})
+
+
+@api_view(['GET'])
+@parser_classes([JSONParser])
+def process(request):
+    CrimeCctvModel().process()
+    return JsonResponse({'result': "Success"})

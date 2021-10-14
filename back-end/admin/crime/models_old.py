@@ -3,7 +3,7 @@ from icecream import ic
 from admin.common.models import Reader, Printer, ValueObject
 
 
-class CrimeCctvModel():
+class CrimeCctvModelOld():
     vo = ValueObject()
     printer = Printer()
     reader = Reader()
