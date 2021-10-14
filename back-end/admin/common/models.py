@@ -127,4 +127,4 @@ class Printer(PrinterBase):
         print(this.head(3))
         print(this.tail(3))
         print(this.info())
-        print(this.isnull().sum())
+        print(f'Null Count is {this.isnull().sum()}')
