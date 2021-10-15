@@ -142,3 +142,10 @@ class CrimeCctvModel():
         crime_df['구별'] = gu_names
         print(crime_df[crime_df['관서명'] == '혜화서'])
         crime_df.to_csv(vo.context + 'new_data/crime_police.csv')
+        dt = dict(zip(station_lats, station_lngs))
+        print(dt)
+
+        with open(vo.context + 'test.csv', 'w', encoding='UTF-8') as f:
+            w = csv.writer(f)
+            w.writerow(dt.keys())
+            w.writerow(dt.values())
