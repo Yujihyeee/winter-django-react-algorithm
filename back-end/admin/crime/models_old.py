@@ -37,13 +37,13 @@ class CrimeCctvModelOld():
         station_lats = []
         station_lngs = []
         gmaps = reader.gmaps()
-        for name in station_names:
+        '''for name in station_names:
             temp = gmaps.geocode(name, language='ko')
             station_addrs.append(temp[0].get('formatted_address'))
             temp_loc = temp[0].get('geometry')
             station_lats.append(temp_loc['location']['lat'])
             station_lngs.append(temp_loc['location']['lng'])
-            print(f'name : {temp[0].get("formatted_address")}')
+            print(f'name : {temp[0].get("formatted_address")}')'''
         gu_names = []
         for name in station_addrs:
             temp = name.split()
