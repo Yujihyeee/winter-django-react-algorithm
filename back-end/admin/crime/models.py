@@ -7,7 +7,7 @@ from admin.common.models import Reader, ValueObject
 import csv
 
 
-class CrimeCctvModel():
+class Crime():
     def __init__(self):
         pass
     '''
@@ -20,6 +20,7 @@ class CrimeCctvModel():
         vo = ValueObject()
         reader = Reader()
         vo.context = 'admin/crime/data/'
+        crime_titles = ['살인', '강도', '강간', '절도', '폭력']
         crime_columns = ['살인 발생', '강도 발생', '강간 발생', '절도 발생', '폭력 발생']  # Nominal
         arrest_columns = ['살인 검거', '강도 검거', '강간 검거', '절도 검거', '폭력 검거']  # Nominal
         arrest_rate_columns = ['살인 검거율', '강도 검거율', '강간 검거율', '절도 검거율', '폭력 검거율']  # Ratio
@@ -27,8 +28,8 @@ class CrimeCctvModel():
         vo.fname = 'crime_in_Seoul'
         crime_df = reader.csv(reader.new_file(vo))
         print('[2] crime_df 에 경찰서위치 추가 ')
-        # self.crime_police(crime_df, reader, vo)
-        vo.fname = 'new_data/police_positions'
+        self.crime_police(crime_df, reader, vo)  # google map
+        vo.fname = 'new_data/crime_police'
         crime_df = reader.csv(reader.new_file(vo))
         print('[3] create CCTV DF')
         vo.fname = 'CCTV_in_Seoul'
@@ -47,10 +48,10 @@ class CrimeCctvModel():
         CCTV와 상관계수: 한국인 0.3, 외국인 0, 고령자 0.2
         '''
         crime_df = crime_df.groupby('구별').sum()
-        crime_df['총 범죄 수'] = crime_df.loc[:, crime_df.columns.str.contains(' 발생$', case=False, regex=True)].sum(axis=1)
-        crime_df['총 검거 수'] = crime_df.loc[:, crime_df.columns.str.contains(' 검거$', case=False, regex=True)].sum(axis=1)
-        crime_df['총 검거율'] = crime_df['총 검거 수'] / crime_df['총 범죄 수'] * 100
-        cctv_crime_df = pd.merge(cctv_df.loc[:, ['구별', '소계']], crime_df.loc[:, '총 범죄 수':'총 검거율'], on='구별')
+        crime_df['총 범죄수'] = crime_df.loc[:, crime_df.columns.str.contains(' 발생$', case=False, regex=True)].sum(axis=1)
+        crime_df['총 검거수'] = crime_df.loc[:, crime_df.columns.str.contains(' 검거$', case=False, regex=True)].sum(axis=1)
+        crime_df['총 검거율'] = crime_df['총 검거수'] / crime_df['총 범죄수'] * 100
+        cctv_crime_df = pd.merge(cctv_df.loc[:, ['구별', '소계']], crime_df.loc[:, '총 범죄수':'총 검거율'], on='구별')
         cctv_crime_df.rename(columns={"소계": "CCTV 총합"}, inplace=True)
         print(cctv_crime_df.corr())
         '''
@@ -72,12 +73,11 @@ class CrimeCctvModel():
             police_df[arrest_rate_columns[i]] = \
                 (police_df[arrest_columns[i]].astype(int) / police_df[j].astype(int)) * 100
 
-        police_df.drop(columns={'살인 검거', '강도 검거', '강간 검거', '절도 검거', '폭력 검거'}, axis=1, inplace=True)
+        police_df.drop(columns=dict(zip(arrest_columns, [])), axis=1, inplace=True)
         for i in arrest_rate_columns:
             police_df.loc[police_df[i] > 100, 1] = 100
-        vals = ['살인', '강도', '강간', '절도', '폭력']
-        keys = [f'{i} 발생' for i in vals]
-        columns = dict(zip(keys, vals))
+        keys = [f'{i} 발생' for i in crime_titles]
+        columns = dict(zip(keys, crime_titles))
         police_df.rename(columns=columns, inplace=True)
         x = police_df[arrest_rate_columns].values
         # from sklearn import preprocessing 추가
@@ -92,34 +92,31 @@ class CrimeCctvModel():
         police_norm_df['범죄'] = np.sum(police_norm_df[crime_columns], axis=1)
         police_norm_df['검거'] = np.sum(police_norm_df[arrest_rate_columns], axis=1)
         police_norm_df.to_csv(vo.context + 'new_data/police_norm.csv', sep=',', encoding='UTF-8')
+        police_norm_df = pd.read_csv(vo.context + 'new_data/police_norm.csv')
+        print(police_norm_df.columns)
+        temp = crime_df[arrest_columns] / crime_df[arrest_columns].max()
+        crime_df['검거'] = np.sum(temp, axis=1)
+        crime_police_tuple = tuple(zip(police_norm_df['구별'], police_norm_df['범죄']))
         print('[8] Seoul Map Creation')
         vo.fname = 'geo_simple'
-        crime_df = reader.json(reader.new_file(vo))
-
-        url = (
-            "https://raw.githubusercontent.com/python-visualization/folium/master/examples/data"
-        )
-        state_geo = f"{url}/us-states.json"
-        state_unemployment = f"{url}/US_Unemployment_Oct2012.csv"
-        state_data = pd.read_csv(state_unemployment)
-
-        m = folium.Map(location=[37, 126], zoom_start=8)
+        state_geo = reader.json(reader.new_file(vo))
+        map = folium.Map(location=[37.5502, 126.982], zoom_start=12, title='Stamen Toner')
 
         folium.Choropleth(
             geo_data=state_geo,
             name="choropleth",
-            data=state_data,
+            data=crime_police_tuple,
             columns=["State", "Unemployment"],
             key_on="feature.id",
-            fill_color="YlGn",
+            fill_color="PuRd",
             fill_opacity=0.7,
             line_opacity=0.2,
-            legend_name="Unemployment Rate (%)",
-        ).add_to(m)
+            legend_name="Crime Rate (%)",
+        ).add_to(map)
 
-        folium.LayerControl().add_to(m)
+        folium.LayerControl().add_to(map)
 
-        m.save(vo.context + 'folium.html')
+        map.save(vo.context + 'new_data/folium.html')
 
     def crime_police(self, crime_df, reader, vo):
         station_names = []
@@ -134,18 +131,21 @@ class CrimeCctvModel():
             temp_loc = temp[0].get('geometry')
             station_lats.append(temp_loc['location']['lat'])
             station_lngs.append(temp_loc['location']['lng'])
+        crime_df['lat'] = station_lats
+        crime_df['lng'] = station_lngs
         gu_names = []
         for name in station_addrs:
             temp = name.split()
             gu_name = [gu for gu in temp if gu[-1] == '구'][0]
             gu_names.append(gu_name)
         crime_df['구별'] = gu_names
-        print(crime_df[crime_df['관서명'] == '혜화서'])
+        crime_df.loc[19, '구별'] = '강서구'
+        print(crime_df[crime_df['관서명'] == '강서서'])
+
         crime_df.to_csv(vo.context + 'new_data/crime_police.csv')
         dt = dict(zip(station_lats, station_lngs))
         print(dt)
-
-        with open(vo.context + 'test.csv', 'w', encoding='UTF-8') as f:
+        with open(vo.context + 'new_data/with_save.csv', 'w', encoding='UTF-8') as f:
             w = csv.writer(f)
             w.writerow(dt.keys())
             w.writerow(dt.values())
