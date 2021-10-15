@@ -115,6 +115,10 @@ class Crime():
         ).add_to(map)
 
         folium.LayerControl().add_to(map)
+        for i in crime_df.index:
+            folium.CircleMarker(crime_df['lat'][i], crime_df['lng'][i],
+                                radius=crime_df['검거'][i] * 10,
+                                fill_color='#0a0a32').add_to(map)
 
         map.save(vo.context + 'new_data/folium.html')
 
