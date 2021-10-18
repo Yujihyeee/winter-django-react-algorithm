@@ -7,5 +7,5 @@ urlpatterns = {
     url(r'cctv', views.create_cctv_model),
     url(r'pop', views.create_population_model),
     url(r'new', views.merge_cctv_pop),
-    url(r'process', views.process)
+    url(r'calculator', views.process)
 }
