@@ -1,0 +1,533 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (t:/workspace/open/src/hotspot/os_cpu/windows_x86/os_windows_x86.cpp:145), pid=15076, tid=17284
+#  guarantee(result == EXCEPTION_CONTINUE_EXECUTION) failed: Unexpected result from topLevelExceptionFilter
+#
+# JRE version: OpenJDK Runtime Environment (11.0+28) (build 11+28)
+# Java VM: OpenJDK 64-Bit Server VM (11+28, mixed mode, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF8 -ea -Xmx1024m 
+
+Host: Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz, 8 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.1202)
+Time: Mon Oct 18 10:33:59 2021 대한민국 표준시 elapsed time: 0 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000001d571b51000):  JavaThread "Python Reference Queue" daemon [_thread_in_native, id=17284, stack(0x0000001f0f2d0000,0x0000001f0f4c0000)]
+
+Stack: [0x0000001f0f2d0000,0x0000001f0f4c0000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  0x00007ffd199eadaa
+C  0x00007ffd19b2852f
+C  0x00007ffd19b29b18
+C  0x00007ffd19b2a187
+C  0x00007ffd1961241c
+C  0x00007ffd199ea89c
+C  [ntdll.dll+0xa20cf]
+C  [ntdll.dll+0x51454]
+C  [ntdll.dll+0xa0bfe]
+C  0x00007ffd1c87735d
+C  0x00007ffd1c877392
+C  0x00007ffd1c7a3884
+C  0x00007ffd1c7a6393
+C  0x00007ffd1c9448eb
+C  [python38.dll+0x16bd9]  dict_dealloc+0x239  (dictobject.c:1990)
+C  [python38.dll+0x924e8]  subtype_clear+0xa8  (typeobject.c:1143)
+C  [python38.dll+0x90ce0]  delete_garbage+0x50  (gcmodule.c:949)
+C  [python38.dll+0x9042d]  collect+0x165  (gcmodule.c:1128)
+C  [python38.dll+0x8f18d]  collect_with_callback+0x45  (gcmodule.c:1241)
+C  [python38.dll+0xf64c3]  PyGC_Collect+0x63  (gcmodule.c:1834)
+C  0x00007ffd1bc6bec0  Java_jpype_ref_JPypeReferenceQueue_wake+0x40  (jp_reference_queue.cpp:60)
+C  0x000001d51dc5f037
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  org.jpype.ref.JPypeReferenceQueue.wake(J)V+0
+j  org.jpype.ref.JPypeReferenceQueue$Worker.run()V+49
+j  java.lang.Thread.run()V+11 java.base@11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000001d5326611c0, length=13, elements={
+0x000001d571b4e800, 0x000001d571b4f800, 0x000001d571b49800, 0x000001d571b4b000,
+0x000001d571b54000, 0x000001d514239800, 0x000001d51423c000, 0x000001d51423d800,
+0x000001d571b53800, 0x000001d571b56000, 0x000001d51445e800, 0x000001d571b51000,
+0x000001d51467e800
+}
+
+Java Threads: ( => current thread )
+  0x000001d571b4e800 JavaThread "main" [_thread_in_native, id=15844, stack(0x0000001f0c640000,0x0000001f0c830000)]
+  0x000001d571b4f800 JavaThread "Reference Handler" daemon [_thread_blocked, id=17964, stack(0x0000001f0dd80000,0x0000001f0df70000)]
+  0x000001d571b49800 JavaThread "Finalizer" daemon [_thread_blocked, id=17700, stack(0x0000001f0df70000,0x0000001f0e160000)]
+  0x000001d571b4b000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=13612, stack(0x0000001f0e160000,0x0000001f0e350000)]
+  0x000001d571b54000 JavaThread "Attach Listener" daemon [_thread_blocked, id=16268, stack(0x0000001f0e350000,0x0000001f0e540000)]
+  0x000001d514239800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=16720, stack(0x0000001f0e540000,0x0000001f0e730000)]
+  0x000001d51423c000 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=17556, stack(0x0000001f0e730000,0x0000001f0e920000)]
+  0x000001d51423d800 JavaThread "Sweeper thread" daemon [_thread_blocked, id=3512, stack(0x0000001f0e920000,0x0000001f0eb10000)]
+  0x000001d571b53800 JavaThread "Service Thread" daemon [_thread_blocked, id=16428, stack(0x0000001f0eb10000,0x0000001f0ed00000)]
+  0x000001d571b56000 JavaThread "Common-Cleaner" daemon [_thread_blocked, id=9936, stack(0x0000001f0eef0000,0x0000001f0f0e0000)]
+  0x000001d51445e800 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=18084, stack(0x0000001f0f0e0000,0x0000001f0f2d0000)]
+=>0x000001d571b51000 JavaThread "Python Reference Queue" daemon [_thread_in_native, id=17284, stack(0x0000001f0f2d0000,0x0000001f0f4c0000)]
+  0x000001d51467e800 JavaThread "C2 CompilerThread2" daemon [_thread_blocked, id=7404, stack(0x0000001f0fe70000,0x0000001f10060000)]
+
+Other Threads:
+  0x000001d5141f3800 VMThread "VM Thread" [stack: 0x0000001f0db90000,0x0000001f0dd80000] [id=16312]
+  0x000001d5141c8800 WatcherThread [stack: 0x0000001f0ed00000,0x0000001f0eef0000] [id=2916]
+  0x000001d50ebde000 GCTaskThread "GC Thread#0" [stack: 0x0000001f0d1e0000,0x0000001f0d3d0000] [id=4680]
+  0x000001d532744800 GCTaskThread "GC Thread#1" [stack: 0x0000001f0f4c0000,0x0000001f0f6b0000] [id=3440]
+  0x000001d532745800 GCTaskThread "GC Thread#2" [stack: 0x0000001f0f6b0000,0x0000001f0f8a0000] [id=7616]
+  0x000001d532747800 GCTaskThread "GC Thread#3" [stack: 0x0000001f0f8a0000,0x0000001f0fa90000] [id=15484]
+  0x000001d53275e000 GCTaskThread "GC Thread#4" [stack: 0x0000001f0fa90000,0x0000001f0fc80000] [id=11224]
+  0x000001d53275e800 GCTaskThread "GC Thread#5" [stack: 0x0000001f0fc80000,0x0000001f0fe70000] [id=8992]
+  0x000001d50ebdf000 ConcurrentGCThread "G1 Main Marker" [stack: 0x0000001f0d3d0000,0x0000001f0d5c0000] [id=16948]
+  0x000001d513fae800 ConcurrentGCThread "G1 Conc#0" [stack: 0x0000001f0d5c0000,0x0000001f0d7b0000] [id=5364]
+  0x000001d51407c800 ConcurrentGCThread "G1 Refine#0" [stack: 0x0000001f0d7b0000,0x0000001f0d9a0000] [id=4452]
+  0x000001d57af4f800 ConcurrentGCThread "G1 Young RemSet Sampling" [stack: 0x0000001f0d9a0000,0x0000001f0db90000] [id=1032]
+
+Threads with active compile tasks:
+C2 CompilerThread1 745       4       jdk.internal.jimage.ImageReader$SharedImageReader::lambda$handleModulesSubTree$1 (43 bytes)
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x00000000c0000000, size: 1024 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ garbage-first heap   total 140288K, used 19304K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 16 young (16384K), 1 survivors (1024K)
+ Metaspace       used 10141K, capacity 10304K, committed 10368K, reserved 1058816K
+  class space    used 1039K, capacity 1108K, committed 1152K, reserved 1048576K
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, A=archive, TAMS=top-at-mark-start (previous, next)
+|   0|0x00000000c0000000, 0x00000000c0059a88, 0x00000000c0100000| 35%| O|  |TAMS 0x00000000c0000000, 0x00000000c0000000| Untracked 
+|   1|0x00000000c0100000, 0x00000000c0137928, 0x00000000c0200000| 21%| O|  |TAMS 0x00000000c0100000, 0x00000000c0100000| Untracked 
+|   2|0x00000000c0200000, 0x00000000c0269e70, 0x00000000c0300000| 41%| O|  |TAMS 0x00000000c0200000, 0x00000000c0200000| Untracked 
+|   3|0x00000000c0300000, 0x00000000c032ad48, 0x00000000c0400000| 16%| O|  |TAMS 0x00000000c0300000, 0x00000000c0300000| Untracked 
+|   4|0x00000000c0400000, 0x00000000c04447e8, 0x00000000c0500000| 26%| O|  |TAMS 0x00000000c0400000, 0x00000000c0400000| Untracked 
+|   5|0x00000000c0500000, 0x00000000c0600000, 0x00000000c0600000|100%| O|  |TAMS 0x00000000c0500000, 0x00000000c0500000| Untracked 
+|   6|0x00000000c0600000, 0x00000000c0700000, 0x00000000c0700000|100%| O|  |TAMS 0x00000000c0600000, 0x00000000c0600000| Untracked 
+|   7|0x00000000c0700000, 0x00000000c0770000, 0x00000000c0800000| 43%| O|  |TAMS 0x00000000c0700000, 0x00000000c0700000| Untracked 
+|   8|0x00000000c0800000, 0x00000000c0800000, 0x00000000c0900000|  0%| F|  |TAMS 0x00000000c0800000, 0x00000000c0800000| Untracked 
+|   9|0x00000000c0900000, 0x00000000c0900000, 0x00000000c0a00000|  0%| F|  |TAMS 0x00000000c0900000, 0x00000000c0900000| Untracked 
+|  10|0x00000000c0a00000, 0x00000000c0a00000, 0x00000000c0b00000|  0%| F|  |TAMS 0x00000000c0a00000, 0x00000000c0a00000| Untracked 
+|  11|0x00000000c0b00000, 0x00000000c0b00000, 0x00000000c0c00000|  0%| F|  |TAMS 0x00000000c0b00000, 0x00000000c0b00000| Untracked 
+|  12|0x00000000c0c00000, 0x00000000c0c8f9f8, 0x00000000c0d00000| 56%| S|CS|TAMS 0x00000000c0c00000, 0x00000000c0c00000| Complete 
+|  13|0x00000000c0d00000, 0x00000000c0d00000, 0x00000000c0e00000|  0%| F|  |TAMS 0x00000000c0d00000, 0x00000000c0d00000| Untracked 
+|  14|0x00000000c0e00000, 0x00000000c0e00000, 0x00000000c0f00000|  0%| F|  |TAMS 0x00000000c0e00000, 0x00000000c0e00000| Untracked 
+|  15|0x00000000c0f00000, 0x00000000c0f00000, 0x00000000c1000000|  0%| F|  |TAMS 0x00000000c0f00000, 0x00000000c0f00000| Untracked 
+|  16|0x00000000c1000000, 0x00000000c1000000, 0x00000000c1100000|  0%| F|  |TAMS 0x00000000c1000000, 0x00000000c1000000| Untracked 
+|  17|0x00000000c1100000, 0x00000000c1100000, 0x00000000c1200000|  0%| F|  |TAMS 0x00000000c1100000, 0x00000000c1100000| Untracked 
+|  18|0x00000000c1200000, 0x00000000c1200000, 0x00000000c1300000|  0%| F|  |TAMS 0x00000000c1200000, 0x00000000c1200000| Untracked 
+|  19|0x00000000c1300000, 0x00000000c1300000, 0x00000000c1400000|  0%| F|  |TAMS 0x00000000c1300000, 0x00000000c1300000| Untracked 
+|  20|0x00000000c1400000, 0x00000000c1400000, 0x00000000c1500000|  0%| F|  |TAMS 0x00000000c1400000, 0x00000000c1400000| Untracked 
+|  21|0x00000000c1500000, 0x00000000c1500000, 0x00000000c1600000|  0%| F|  |TAMS 0x00000000c1500000, 0x00000000c1500000| Untracked 
+|  22|0x00000000c1600000, 0x00000000c1600000, 0x00000000c1700000|  0%| F|  |TAMS 0x00000000c1600000, 0x00000000c1600000| Untracked 
+|  23|0x00000000c1700000, 0x00000000c1700000, 0x00000000c1800000|  0%| F|  |TAMS 0x00000000c1700000, 0x00000000c1700000| Untracked 
+|  24|0x00000000c1800000, 0x00000000c1800000, 0x00000000c1900000|  0%| F|  |TAMS 0x00000000c1800000, 0x00000000c1800000| Untracked 
+|  25|0x00000000c1900000, 0x00000000c1900000, 0x00000000c1a00000|  0%| F|  |TAMS 0x00000000c1900000, 0x00000000c1900000| Untracked 
+|  26|0x00000000c1a00000, 0x00000000c1a00000, 0x00000000c1b00000|  0%| F|  |TAMS 0x00000000c1a00000, 0x00000000c1a00000| Untracked 
+|  27|0x00000000c1b00000, 0x00000000c1b00000, 0x00000000c1c00000|  0%| F|  |TAMS 0x00000000c1b00000, 0x00000000c1b00000| Untracked 
+|  28|0x00000000c1c00000, 0x00000000c1c00000, 0x00000000c1d00000|  0%| F|  |TAMS 0x00000000c1c00000, 0x00000000c1c00000| Untracked 
+|  29|0x00000000c1d00000, 0x00000000c1d00000, 0x00000000c1e00000|  0%| F|  |TAMS 0x00000000c1d00000, 0x00000000c1d00000| Untracked 
+|  30|0x00000000c1e00000, 0x00000000c1e00000, 0x00000000c1f00000|  0%| F|  |TAMS 0x00000000c1e00000, 0x00000000c1e00000| Untracked 
+|  31|0x00000000c1f00000, 0x00000000c1f00000, 0x00000000c2000000|  0%| F|  |TAMS 0x00000000c1f00000, 0x00000000c1f00000| Untracked 
+|  32|0x00000000c2000000, 0x00000000c2000000, 0x00000000c2100000|  0%| F|  |TAMS 0x00000000c2000000, 0x00000000c2000000| Untracked 
+|  33|0x00000000c2100000, 0x00000000c2100000, 0x00000000c2200000|  0%| F|  |TAMS 0x00000000c2100000, 0x00000000c2100000| Untracked 
+|  34|0x00000000c2200000, 0x00000000c2200000, 0x00000000c2300000|  0%| F|  |TAMS 0x00000000c2200000, 0x00000000c2200000| Untracked 
+|  35|0x00000000c2300000, 0x00000000c2300000, 0x00000000c2400000|  0%| F|  |TAMS 0x00000000c2300000, 0x00000000c2300000| Untracked 
+|  36|0x00000000c2400000, 0x00000000c2400000, 0x00000000c2500000|  0%| F|  |TAMS 0x00000000c2400000, 0x00000000c2400000| Untracked 
+|  37|0x00000000c2500000, 0x00000000c2500000, 0x00000000c2600000|  0%| F|  |TAMS 0x00000000c2500000, 0x00000000c2500000| Untracked 
+|  38|0x00000000c2600000, 0x00000000c2600000, 0x00000000c2700000|  0%| F|  |TAMS 0x00000000c2600000, 0x00000000c2600000| Untracked 
+|  39|0x00000000c2700000, 0x00000000c2700000, 0x00000000c2800000|  0%| F|  |TAMS 0x00000000c2700000, 0x00000000c2700000| Untracked 
+|  40|0x00000000c2800000, 0x00000000c2800000, 0x00000000c2900000|  0%| F|  |TAMS 0x00000000c2800000, 0x00000000c2800000| Untracked 
+|  41|0x00000000c2900000, 0x00000000c2900000, 0x00000000c2a00000|  0%| F|  |TAMS 0x00000000c2900000, 0x00000000c2900000| Untracked 
+|  42|0x00000000c2a00000, 0x00000000c2a00000, 0x00000000c2b00000|  0%| F|  |TAMS 0x00000000c2a00000, 0x00000000c2a00000| Untracked 
+|  43|0x00000000c2b00000, 0x00000000c2b00000, 0x00000000c2c00000|  0%| F|  |TAMS 0x00000000c2b00000, 0x00000000c2b00000| Untracked 
+|  44|0x00000000c2c00000, 0x00000000c2c00000, 0x00000000c2d00000|  0%| F|  |TAMS 0x00000000c2c00000, 0x00000000c2c00000| Untracked 
+|  45|0x00000000c2d00000, 0x00000000c2d00000, 0x00000000c2e00000|  0%| F|  |TAMS 0x00000000c2d00000, 0x00000000c2d00000| Untracked 
+|  46|0x00000000c2e00000, 0x00000000c2e00000, 0x00000000c2f00000|  0%| F|  |TAMS 0x00000000c2e00000, 0x00000000c2e00000| Untracked 
+|  47|0x00000000c2f00000, 0x00000000c2f00000, 0x00000000c3000000|  0%| F|  |TAMS 0x00000000c2f00000, 0x00000000c2f00000| Untracked 
+|  48|0x00000000c3000000, 0x00000000c3000000, 0x00000000c3100000|  0%| F|  |TAMS 0x00000000c3000000, 0x00000000c3000000| Untracked 
+|  49|0x00000000c3100000, 0x00000000c3100000, 0x00000000c3200000|  0%| F|  |TAMS 0x00000000c3100000, 0x00000000c3100000| Untracked 
+|  50|0x00000000c3200000, 0x00000000c3200000, 0x00000000c3300000|  0%| F|  |TAMS 0x00000000c3200000, 0x00000000c3200000| Untracked 
+|  51|0x00000000c3300000, 0x00000000c3300000, 0x00000000c3400000|  0%| F|  |TAMS 0x00000000c3300000, 0x00000000c3300000| Untracked 
+|  52|0x00000000c3400000, 0x00000000c3400000, 0x00000000c3500000|  0%| F|  |TAMS 0x00000000c3400000, 0x00000000c3400000| Untracked 
+|  53|0x00000000c3500000, 0x00000000c3500000, 0x00000000c3600000|  0%| F|  |TAMS 0x00000000c3500000, 0x00000000c3500000| Untracked 
+|  54|0x00000000c3600000, 0x00000000c3600000, 0x00000000c3700000|  0%| F|  |TAMS 0x00000000c3600000, 0x00000000c3600000| Untracked 
+|  55|0x00000000c3700000, 0x00000000c3700000, 0x00000000c3800000|  0%| F|  |TAMS 0x00000000c3700000, 0x00000000c3700000| Untracked 
+|  56|0x00000000c3800000, 0x00000000c3800000, 0x00000000c3900000|  0%| F|  |TAMS 0x00000000c3800000, 0x00000000c3800000| Untracked 
+|  57|0x00000000c3900000, 0x00000000c3900000, 0x00000000c3a00000|  0%| F|  |TAMS 0x00000000c3900000, 0x00000000c3900000| Untracked 
+|  58|0x00000000c3a00000, 0x00000000c3a00000, 0x00000000c3b00000|  0%| F|  |TAMS 0x00000000c3a00000, 0x00000000c3a00000| Untracked 
+|  59|0x00000000c3b00000, 0x00000000c3b00000, 0x00000000c3c00000|  0%| F|  |TAMS 0x00000000c3b00000, 0x00000000c3b00000| Untracked 
+|  60|0x00000000c3c00000, 0x00000000c3c00000, 0x00000000c3d00000|  0%| F|  |TAMS 0x00000000c3c00000, 0x00000000c3c00000| Untracked 
+|  61|0x00000000c3d00000, 0x00000000c3d00000, 0x00000000c3e00000|  0%| F|  |TAMS 0x00000000c3d00000, 0x00000000c3d00000| Untracked 
+|  62|0x00000000c3e00000, 0x00000000c3e00000, 0x00000000c3f00000|  0%| F|  |TAMS 0x00000000c3e00000, 0x00000000c3e00000| Untracked 
+|  63|0x00000000c3f00000, 0x00000000c3f00000, 0x00000000c4000000|  0%| F|  |TAMS 0x00000000c3f00000, 0x00000000c3f00000| Untracked 
+|  64|0x00000000c4000000, 0x00000000c4000000, 0x00000000c4100000|  0%| F|  |TAMS 0x00000000c4000000, 0x00000000c4000000| Untracked 
+|  65|0x00000000c4100000, 0x00000000c4100000, 0x00000000c4200000|  0%| F|  |TAMS 0x00000000c4100000, 0x00000000c4100000| Untracked 
+|  66|0x00000000c4200000, 0x00000000c4200000, 0x00000000c4300000|  0%| F|  |TAMS 0x00000000c4200000, 0x00000000c4200000| Untracked 
+|  67|0x00000000c4300000, 0x00000000c4300000, 0x00000000c4400000|  0%| F|  |TAMS 0x00000000c4300000, 0x00000000c4300000| Untracked 
+|  68|0x00000000c4400000, 0x00000000c4400000, 0x00000000c4500000|  0%| F|  |TAMS 0x00000000c4400000, 0x00000000c4400000| Untracked 
+|  69|0x00000000c4500000, 0x00000000c4500000, 0x00000000c4600000|  0%| F|  |TAMS 0x00000000c4500000, 0x00000000c4500000| Untracked 
+|  70|0x00000000c4600000, 0x00000000c4600000, 0x00000000c4700000|  0%| F|  |TAMS 0x00000000c4600000, 0x00000000c4600000| Untracked 
+|  71|0x00000000c4700000, 0x00000000c4700000, 0x00000000c4800000|  0%| F|  |TAMS 0x00000000c4700000, 0x00000000c4700000| Untracked 
+|  72|0x00000000c4800000, 0x00000000c4800000, 0x00000000c4900000|  0%| F|  |TAMS 0x00000000c4800000, 0x00000000c4800000| Untracked 
+|  73|0x00000000c4900000, 0x00000000c4900000, 0x00000000c4a00000|  0%| F|  |TAMS 0x00000000c4900000, 0x00000000c4900000| Untracked 
+|  74|0x00000000c4a00000, 0x00000000c4a00000, 0x00000000c4b00000|  0%| F|  |TAMS 0x00000000c4a00000, 0x00000000c4a00000| Untracked 
+|  75|0x00000000c4b00000, 0x00000000c4b00000, 0x00000000c4c00000|  0%| F|  |TAMS 0x00000000c4b00000, 0x00000000c4b00000| Untracked 
+|  76|0x00000000c4c00000, 0x00000000c4c00000, 0x00000000c4d00000|  0%| F|  |TAMS 0x00000000c4c00000, 0x00000000c4c00000| Untracked 
+|  77|0x00000000c4d00000, 0x00000000c4d00000, 0x00000000c4e00000|  0%| F|  |TAMS 0x00000000c4d00000, 0x00000000c4d00000| Untracked 
+|  78|0x00000000c4e00000, 0x00000000c4e00000, 0x00000000c4f00000|  0%| F|  |TAMS 0x00000000c4e00000, 0x00000000c4e00000| Untracked 
+|  79|0x00000000c4f00000, 0x00000000c4f00000, 0x00000000c5000000|  0%| F|  |TAMS 0x00000000c4f00000, 0x00000000c4f00000| Untracked 
+|  80|0x00000000c5000000, 0x00000000c5000000, 0x00000000c5100000|  0%| F|  |TAMS 0x00000000c5000000, 0x00000000c5000000| Untracked 
+|  81|0x00000000c5100000, 0x00000000c5100000, 0x00000000c5200000|  0%| F|  |TAMS 0x00000000c5100000, 0x00000000c5100000| Untracked 
+|  82|0x00000000c5200000, 0x00000000c5200000, 0x00000000c5300000|  0%| F|  |TAMS 0x00000000c5200000, 0x00000000c5200000| Untracked 
+|  83|0x00000000c5300000, 0x00000000c5300000, 0x00000000c5400000|  0%| F|  |TAMS 0x00000000c5300000, 0x00000000c5300000| Untracked 
+|  84|0x00000000c5400000, 0x00000000c5400000, 0x00000000c5500000|  0%| F|  |TAMS 0x00000000c5400000, 0x00000000c5400000| Untracked 
+|  85|0x00000000c5500000, 0x00000000c5500000, 0x00000000c5600000|  0%| F|  |TAMS 0x00000000c5500000, 0x00000000c5500000| Untracked 
+|  86|0x00000000c5600000, 0x00000000c5600000, 0x00000000c5700000|  0%| F|  |TAMS 0x00000000c5600000, 0x00000000c5600000| Untracked 
+|  87|0x00000000c5700000, 0x00000000c5700000, 0x00000000c5800000|  0%| F|  |TAMS 0x00000000c5700000, 0x00000000c5700000| Untracked 
+|  88|0x00000000c5800000, 0x00000000c5800000, 0x00000000c5900000|  0%| F|  |TAMS 0x00000000c5800000, 0x00000000c5800000| Untracked 
+|  89|0x00000000c5900000, 0x00000000c5900000, 0x00000000c5a00000|  0%| F|  |TAMS 0x00000000c5900000, 0x00000000c5900000| Untracked 
+|  90|0x00000000c5a00000, 0x00000000c5a00000, 0x00000000c5b00000|  0%| F|  |TAMS 0x00000000c5a00000, 0x00000000c5a00000| Untracked 
+|  91|0x00000000c5b00000, 0x00000000c5b00000, 0x00000000c5c00000|  0%| F|  |TAMS 0x00000000c5b00000, 0x00000000c5b00000| Untracked 
+|  92|0x00000000c5c00000, 0x00000000c5c00000, 0x00000000c5d00000|  0%| F|  |TAMS 0x00000000c5c00000, 0x00000000c5c00000| Untracked 
+|  93|0x00000000c5d00000, 0x00000000c5d00000, 0x00000000c5e00000|  0%| F|  |TAMS 0x00000000c5d00000, 0x00000000c5d00000| Untracked 
+|  94|0x00000000c5e00000, 0x00000000c5e00000, 0x00000000c5f00000|  0%| F|  |TAMS 0x00000000c5e00000, 0x00000000c5e00000| Untracked 
+|  95|0x00000000c5f00000, 0x00000000c5f00000, 0x00000000c6000000|  0%| F|  |TAMS 0x00000000c5f00000, 0x00000000c5f00000| Untracked 
+|  96|0x00000000c6000000, 0x00000000c6000000, 0x00000000c6100000|  0%| F|  |TAMS 0x00000000c6000000, 0x00000000c6000000| Untracked 
+|  97|0x00000000c6100000, 0x00000000c6100000, 0x00000000c6200000|  0%| F|  |TAMS 0x00000000c6100000, 0x00000000c6100000| Untracked 
+|  98|0x00000000c6200000, 0x00000000c6200000, 0x00000000c6300000|  0%| F|  |TAMS 0x00000000c6200000, 0x00000000c6200000| Untracked 
+|  99|0x00000000c6300000, 0x00000000c6300000, 0x00000000c6400000|  0%| F|  |TAMS 0x00000000c6300000, 0x00000000c6300000| Untracked 
+| 100|0x00000000c6400000, 0x00000000c6400000, 0x00000000c6500000|  0%| F|  |TAMS 0x00000000c6400000, 0x00000000c6400000| Untracked 
+| 101|0x00000000c6500000, 0x00000000c6500000, 0x00000000c6600000|  0%| F|  |TAMS 0x00000000c6500000, 0x00000000c6500000| Untracked 
+| 102|0x00000000c6600000, 0x00000000c6600000, 0x00000000c6700000|  0%| F|  |TAMS 0x00000000c6600000, 0x00000000c6600000| Untracked 
+| 103|0x00000000c6700000, 0x00000000c6700000, 0x00000000c6800000|  0%| F|  |TAMS 0x00000000c6700000, 0x00000000c6700000| Untracked 
+| 104|0x00000000c6800000, 0x00000000c6800000, 0x00000000c6900000|  0%| F|  |TAMS 0x00000000c6800000, 0x00000000c6800000| Untracked 
+| 105|0x00000000c6900000, 0x00000000c6900000, 0x00000000c6a00000|  0%| F|  |TAMS 0x00000000c6900000, 0x00000000c6900000| Untracked 
+| 106|0x00000000c6a00000, 0x00000000c6a00000, 0x00000000c6b00000|  0%| F|  |TAMS 0x00000000c6a00000, 0x00000000c6a00000| Untracked 
+| 107|0x00000000c6b00000, 0x00000000c6b00000, 0x00000000c6c00000|  0%| F|  |TAMS 0x00000000c6b00000, 0x00000000c6b00000| Untracked 
+| 108|0x00000000c6c00000, 0x00000000c6c00000, 0x00000000c6d00000|  0%| F|  |TAMS 0x00000000c6c00000, 0x00000000c6c00000| Untracked 
+| 109|0x00000000c6d00000, 0x00000000c6d00000, 0x00000000c6e00000|  0%| F|  |TAMS 0x00000000c6d00000, 0x00000000c6d00000| Untracked 
+| 110|0x00000000c6e00000, 0x00000000c6e00000, 0x00000000c6f00000|  0%| F|  |TAMS 0x00000000c6e00000, 0x00000000c6e00000| Untracked 
+| 111|0x00000000c6f00000, 0x00000000c6f00000, 0x00000000c7000000|  0%| F|  |TAMS 0x00000000c6f00000, 0x00000000c6f00000| Untracked 
+| 112|0x00000000c7000000, 0x00000000c7000000, 0x00000000c7100000|  0%| F|  |TAMS 0x00000000c7000000, 0x00000000c7000000| Untracked 
+| 113|0x00000000c7100000, 0x00000000c7100000, 0x00000000c7200000|  0%| F|  |TAMS 0x00000000c7100000, 0x00000000c7100000| Untracked 
+| 114|0x00000000c7200000, 0x00000000c7200000, 0x00000000c7300000|  0%| F|  |TAMS 0x00000000c7200000, 0x00000000c7200000| Untracked 
+| 115|0x00000000c7300000, 0x00000000c7300000, 0x00000000c7400000|  0%| F|  |TAMS 0x00000000c7300000, 0x00000000c7300000| Untracked 
+| 116|0x00000000c7400000, 0x00000000c7400000, 0x00000000c7500000|  0%| F|  |TAMS 0x00000000c7400000, 0x00000000c7400000| Untracked 
+| 117|0x00000000c7500000, 0x00000000c7500000, 0x00000000c7600000|  0%| F|  |TAMS 0x00000000c7500000, 0x00000000c7500000| Untracked 
+| 118|0x00000000c7600000, 0x00000000c7600000, 0x00000000c7700000|  0%| F|  |TAMS 0x00000000c7600000, 0x00000000c7600000| Untracked 
+| 119|0x00000000c7700000, 0x00000000c7700000, 0x00000000c7800000|  0%| F|  |TAMS 0x00000000c7700000, 0x00000000c7700000| Untracked 
+| 120|0x00000000c7800000, 0x00000000c7800000, 0x00000000c7900000|  0%| F|  |TAMS 0x00000000c7800000, 0x00000000c7800000| Untracked 
+| 121|0x00000000c7900000, 0x00000000c799c020, 0x00000000c7a00000| 60%| E|  |TAMS 0x00000000c7900000, 0x00000000c7900000| Complete 
+| 122|0x00000000c7a00000, 0x00000000c7b00000, 0x00000000c7b00000|100%| E|CS|TAMS 0x00000000c7a00000, 0x00000000c7a00000| Complete 
+| 123|0x00000000c7b00000, 0x00000000c7c00000, 0x00000000c7c00000|100%| E|CS|TAMS 0x00000000c7b00000, 0x00000000c7b00000| Complete 
+| 124|0x00000000c7c00000, 0x00000000c7d00000, 0x00000000c7d00000|100%| E|CS|TAMS 0x00000000c7c00000, 0x00000000c7c00000| Complete 
+| 125|0x00000000c7d00000, 0x00000000c7e00000, 0x00000000c7e00000|100%| E|CS|TAMS 0x00000000c7d00000, 0x00000000c7d00000| Complete 
+| 126|0x00000000c7e00000, 0x00000000c7f00000, 0x00000000c7f00000|100%| E|CS|TAMS 0x00000000c7e00000, 0x00000000c7e00000| Complete 
+| 127|0x00000000c7f00000, 0x00000000c8000000, 0x00000000c8000000|100%| E|CS|TAMS 0x00000000c7f00000, 0x00000000c7f00000| Complete 
+| 128|0x00000000c8000000, 0x00000000c8100000, 0x00000000c8100000|100%| E|CS|TAMS 0x00000000c8000000, 0x00000000c8000000| Complete 
+| 129|0x00000000c8100000, 0x00000000c8200000, 0x00000000c8200000|100%| E|CS|TAMS 0x00000000c8100000, 0x00000000c8100000| Complete 
+| 130|0x00000000c8200000, 0x00000000c8300000, 0x00000000c8300000|100%| E|CS|TAMS 0x00000000c8200000, 0x00000000c8200000| Complete 
+| 131|0x00000000c8300000, 0x00000000c8400000, 0x00000000c8400000|100%| E|CS|TAMS 0x00000000c8300000, 0x00000000c8300000| Complete 
+| 132|0x00000000c8400000, 0x00000000c8500000, 0x00000000c8500000|100%| E|CS|TAMS 0x00000000c8400000, 0x00000000c8400000| Complete 
+| 133|0x00000000c8500000, 0x00000000c8600000, 0x00000000c8600000|100%| E|CS|TAMS 0x00000000c8500000, 0x00000000c8500000| Complete 
+| 134|0x00000000c8600000, 0x00000000c8700000, 0x00000000c8700000|100%| E|CS|TAMS 0x00000000c8600000, 0x00000000c8600000| Complete 
+| 135|0x00000000c8700000, 0x00000000c8800000, 0x00000000c8800000|100%| E|CS|TAMS 0x00000000c8700000, 0x00000000c8700000| Complete 
+| 154|0x00000000c9a00000, 0x00000000c9a70050, 0x00000000c9b00000| 43%| O|  |TAMS 0x00000000c9a00000, 0x00000000c9a00000| Untracked 
+
+Card table byte_map: [0x000001d52d180000,0x000001d52d380000] _byte_map_base: 0x000001d52cb80000
+
+Marking Bits (Prev, Next): (CMBitMap*) 0x000001d50e3ca2b8, (CMBitMap*) 0x000001d50e3ca2f0
+ Prev Bits: [0x000001d52d580000, 0x000001d52e580000)
+ Next Bits: [0x000001d52e580000, 0x000001d52f580000)
+
+Polling page: 0x000001d511bd0000
+
+Metaspace:
+
+Usage:
+  Non-class:      9.04 MB capacity,     8.95 MB (>99%) used,    81.55 KB ( <1%) free+waste,     8.75 KB ( <1%) overhead. 
+      Class:      1.08 MB capacity,     1.02 MB ( 94%) used,    62.72 KB (  6%) free+waste,     3.69 KB ( <1%) overhead. 
+       Both:     10.13 MB capacity,     9.97 MB ( 98%) used,   144.27 KB (  1%) free+waste,    12.44 KB ( <1%) overhead. 
+
+Virtual space:
+  Non-class space:       10.00 MB reserved,       9.25 MB ( 93%) committed 
+      Class space:        1.00 GB reserved,       1.13 MB ( <1%) committed 
+             Both:        1.01 GB reserved,      10.38 MB (  1%) committed 
+
+Chunk freelists:
+   Non-Class:  2.50 KB
+       Class:  1.50 KB
+        Both:  4.00 KB
+
+CodeHeap 'non-profiled nmethods': size=120000Kb used=408Kb max_used=408Kb free=119591Kb
+ bounds [0x000001d525720000, 0x000001d525990000, 0x000001d52cc50000]
+CodeHeap 'profiled nmethods': size=120000Kb used=1749Kb max_used=1749Kb free=118250Kb
+ bounds [0x000001d51e1f0000, 0x000001d51e460000, 0x000001d525720000]
+CodeHeap 'non-nmethods': size=5760Kb used=1081Kb max_used=1101Kb free=4678Kb
+ bounds [0x000001d51dc50000, 0x000001d51dec0000, 0x000001d51e1f0000]
+ total_blobs=1598 nmethods=944 adapters=286
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (10 events):
+Event: 0.284 Thread 0x000001d51423c000 nmethod 429 0x000001d51e2a2210 code [0x000001d51e2a26a0, 0x000001d51e2a4a20]
+Event: 0.284 Thread 0x000001d51423c000  430       3       org.jpype.manager.TypeManager::createMethods (380 bytes)
+Event: 0.284 Thread 0x000001d51445e800 nmethod 410 0x000001d525745610 code [0x000001d5257457e0, 0x000001d525745eb8]
+Event: 0.284 Thread 0x000001d51423c000 nmethod 430 0x000001d51e2a5590 code [0x000001d51e2a5940, 0x000001d51e2a74a0]
+Event: 0.284 Thread 0x000001d51423c000  431   !   3       sun.reflect.annotation.AnnotationParser::parseAnnotations (37 bytes)
+Event: 0.285 Thread 0x000001d51423c000 nmethod 431 0x000001d51e2a7f10 code [0x000001d51e2a8100, 0x000001d51e2a8470]
+Event: 0.285 Thread 0x000001d51423c000  432       3       java.util.Collections$EmptyMap::values (4 bytes)
+Event: 0.285 Thread 0x000001d51423c000 nmethod 432 0x000001d51e2a8610 code [0x000001d51e2a87c0, 0x000001d51e2a8978]
+Event: 0.285 Thread 0x000001d51423c000  433       3       java.util.Collections$EmptySet::toArray (11 bytes)
+Event: 0.285 Thread 0x000001d51423c000 nmethod 433 0x000001d51e2a8a10 code [0x000001d51e2a8be0, 0x000001d51e2a8f18]
+
+GC Heap History (2 events):
+Event: 0.272 GC heap before
+{Heap before GC invocations=0 (full 0):
+ garbage-first heap   total 260096K, used 4096K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 6 young (6144K), 0 survivors (0K)
+ Metaspace       used 6700K, capacity 6841K, committed 7040K, reserved 1056768K
+  class space    used 581K, capacity 636K, committed 640K, reserved 1048576K
+}
+Event: 0.280 GC heap after
+{Heap after GC invocations=1 (full 1):
+ garbage-first heap   total 20480K, used 1897K [0x00000000c0000000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 6700K, capacity 6841K, committed 7040K, reserved 1056768K
+  class space    used 581K, capacity 636K, committed 640K, reserved 1048576K
+}
+
+Deoptimization events (7 events):
+Event: 0.122 Thread 0x000001d571b4e800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000001d52572526c method=java.lang.String.hashCode()I @ 14 c2
+Event: 0.144 Thread 0x000001d571b4e800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000001d525726e10 method=java.util.zip.ZipInputStream.read([BII)I @ 50 c2
+Event: 0.153 Thread 0x000001d571b4e800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000001d525728a5c method=java.util.zip.ZipInputStream.read([BII)I @ 50 c2
+Event: 0.265 Thread 0x000001d571b4e800 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x000001d525740bf0 method=java.lang.PublicMethods$MethodList.filter([Ljava/lang/reflect/Method;Ljava/lang/String;[Ljava/lang/Class;Z)Ljava/lang/PublicMethods$MethodList; @ 21 c2
+Event: 0.265 Thread 0x000001d571b4e800 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x000001d525740bf0 method=java.lang.PublicMethods$MethodList.filter([Ljava/lang/reflect/Method;Ljava/lang/String;[Ljava/lang/Class;Z)Ljava/lang/PublicMethods$MethodList; @ 21 c2
+Event: 0.265 Thread 0x000001d571b4e800 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x000001d525740bf0 method=java.lang.PublicMethods$MethodList.filter([Ljava/lang/reflect/Method;Ljava/lang/String;[Ljava/lang/Class;Z)Ljava/lang/PublicMethods$MethodList; @ 21 c2
+Event: 0.265 Thread 0x000001d571b4e800 Uncommon trap: reason=profile_predicate action=maybe_recompile pc=0x000001d525740bf0 method=java.lang.PublicMethods$MethodList.filter([Ljava/lang/reflect/Method;Ljava/lang/String;[Ljava/lang/Class;Z)Ljava/lang/PublicMethods$MethodList; @ 21 c2
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (2 events):
+Event: 0.087 Thread 0x000001d571b4e800 Exception <a 'java/io/IOException'{0x00000000cfc139a8}: Bad pathname> (0x00000000cfc139a8) thrown at [t:/workspace/open/src/hotspot/share/prims/jni.cpp, line 636]
+Event: 0.089 Thread 0x000001d571b4e800 Exception <a 'java/io/IOException'{0x00000000cfc19950}: Bad pathname> (0x00000000cfc19950) thrown at [t:/workspace/open/src/hotspot/share/prims/jni.cpp, line 636]
+
+Events (10 events):
+Event: 0.265 Thread 0x000001d571b4e800 DEOPT PACKING pc=0x000001d525740bf0 sp=0x0000001f0c823e50
+Event: 0.265 Thread 0x000001d571b4e800 DEOPT UNPACKING pc=0x000001d51dc78f2f sp=0x0000001f0c823de8 mode 2
+Event: 0.269 loading class java/lang/Short$ShortCache
+Event: 0.269 loading class java/lang/Short$ShortCache done
+Event: 0.271 Executing VM operation: G1CollectFull
+Event: 0.280 Executing VM operation: G1CollectFull done
+Event: 0.281 loading class java/math/BigInteger
+Event: 0.282 loading class java/math/BigInteger done
+Event: 0.284 loading class java/lang/Long$LongCache
+Event: 0.284 loading class java/lang/Long$LongCache done
+
+
+Dynamic libraries:
+0x00007ff7fc9c0000 - 0x00007ff7fc9dc000 	C:\Users\bitcamp\.conda\envs\venv\python.exe
+0x00007ffd893f0000 - 0x00007ffd895e5000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffd88770000 - 0x00007ffd8882e000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffd86b10000 - 0x00007ffd86dd9000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffd86e10000 - 0x00007ffd86f10000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffd3ed20000 - 0x00007ffd3f152000 	C:\Users\bitcamp\.conda\envs\venv\python38.dll
+0x00007ffd81e30000 - 0x00007ffd81e49000 	C:\Users\bitcamp\.conda\envs\venv\VCRUNTIME140.dll
+0x00007ffd88160000 - 0x00007ffd881b5000 	C:\WINDOWS\System32\SHLWAPI.dll
+0x00007ffd88950000 - 0x00007ffd889ee000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffd890e0000 - 0x00007ffd8914b000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffd83bd0000 - 0x00007ffd83bda000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffd87440000 - 0x00007ffd8756a000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffd881e0000 - 0x00007ffd8828c000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffd889f0000 - 0x00007ffd88a8b000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffd86350000 - 0x00007ffd86368000 	C:\WINDOWS\SYSTEM32\CRYPTSP.dll
+0x00007ffd85b30000 - 0x00007ffd85b64000 	C:\WINDOWS\system32\rsaenh.dll
+0x00007ffd86de0000 - 0x00007ffd86e07000 	C:\WINDOWS\System32\bcrypt.dll
+0x00007ffd86370000 - 0x00007ffd8637c000 	C:\WINDOWS\SYSTEM32\CRYPTBASE.dll
+0x00007ffd87070000 - 0x00007ffd870f3000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffd7ce10000 - 0x00007ffd7ce1f000 	C:\Users\bitcamp\.conda\envs\venv\python3.DLL
+0x00007ffd716e0000 - 0x00007ffd716f7000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_bz2.pyd
+0x00007ffd716b0000 - 0x00007ffd716da000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_lzma.pyd
+0x00007ffd71690000 - 0x00007ffd716a6000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_socket.pyd
+0x00007ffd85ea0000 - 0x00007ffd85edb000 	C:\WINDOWS\SYSTEM32\IPHLPAPI.DLL
+0x00007ffd7ce00000 - 0x00007ffd7ce09000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\select.pyd
+0x00007ffd63a40000 - 0x00007ffd63a67000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_ssl.pyd
+0x00007ffd86f10000 - 0x00007ffd87066000 	C:\WINDOWS\System32\CRYPT32.dll
+0x00007ffd3f320000 - 0x00007ffd3f66a000 	C:\Users\bitcamp\.conda\envs\venv\Library\bin\libcrypto-1_1-x64.dll
+0x00007ffd54990000 - 0x00007ffd54a3c000 	C:\Users\bitcamp\.conda\envs\venv\Library\bin\libssl-1_1-x64.dll
+0x00007ffd88f30000 - 0x00007ffd890d1000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffd87100000 - 0x00007ffd87122000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffd89380000 - 0x00007ffd893ab000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffd871d0000 - 0x00007ffd872db000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffd87130000 - 0x00007ffd871cd000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffd87600000 - 0x00007ffd87630000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffd71670000 - 0x00007ffd71682000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_asyncio.pyd
+0x00007ffd7b3a0000 - 0x00007ffd7b3ad000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_overlapped.pyd
+0x00007ffd861a0000 - 0x00007ffd8620a000 	C:\WINDOWS\system32\mswsock.dll
+0x00007ffd76f60000 - 0x00007ffd76f69000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_queue.pyd
+0x00007ffd714b0000 - 0x00007ffd714bd000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_hashlib.pyd
+0x00007ffd69850000 - 0x00007ffd69870000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_ctypes.pyd
+0x00007ffd876e0000 - 0x00007ffd8780a000 	C:\WINDOWS\System32\ole32.dll
+0x00007ffd88aa0000 - 0x00007ffd88df5000 	C:\WINDOWS\System32\combase.dll
+0x00007ffd69af0000 - 0x00007ffd69afb000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\libffi-7.dll
+0x00007ffd88e60000 - 0x00007ffd88f2d000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffd60500000 - 0x00007ffd60543000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_decimal.pyd
+0x00007ffd408c0000 - 0x00007ffd409ce000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\unicodedata.pyd
+0x0000000066d80000 - 0x0000000068b11000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\.libs\libopenblas.WCDJNK7YVMPZQ2ME2ZZHJJRJ3JIKNDB7.gfortran-win_amd64.dll
+0x00007ffd3c120000 - 0x00007ffd3c3e9000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\core\_multiarray_umath.cp38-win_amd64.pyd
+0x00007ffd68e50000 - 0x00007ffd68e6f000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\core\_multiarray_tests.cp38-win_amd64.pyd
+0x00007ffd69530000 - 0x00007ffd69539000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\linalg\lapack_lite.cp38-win_amd64.pyd
+0x00007ffd61100000 - 0x00007ffd6112a000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\linalg\_umath_linalg.cp38-win_amd64.pyd
+0x00007ffd60d00000 - 0x00007ffd60d20000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\fft\_pocketfft_internal.cp38-win_amd64.pyd
+0x00007ffd53c60000 - 0x00007ffd53cf0000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\mtrand.cp38-win_amd64.pyd
+0x00007ffd60bd0000 - 0x00007ffd60bf9000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\bit_generator.cp38-win_amd64.pyd
+0x00007ffd604c0000 - 0x00007ffd604f2000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\_common.cp38-win_amd64.pyd
+0x00007ffd5b370000 - 0x00007ffd5b3b0000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\_bounded_integers.cp38-win_amd64.pyd
+0x00007ffd5b350000 - 0x00007ffd5b368000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\_mt19937.cp38-win_amd64.pyd
+0x00007ffd5b330000 - 0x00007ffd5b347000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\_philox.cp38-win_amd64.pyd
+0x00007ffd58e60000 - 0x00007ffd58e75000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\_pcg64.cp38-win_amd64.pyd
+0x00007ffd58e40000 - 0x00007ffd58e52000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\_sfc64.cp38-win_amd64.pyd
+0x00007ffd3fb00000 - 0x00007ffd3fba5000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random\_generator.cp38-win_amd64.pyd
+0x00007ffd3ec10000 - 0x00007ffd3ed13000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\interval.cp38-win_amd64.pyd
+0x00007ffd3def0000 - 0x00007ffd3e023000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\hashtable.cp38-win_amd64.pyd
+0x00007ffd58e10000 - 0x00007ffd58e3e000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\missing.cp38-win_amd64.pyd
+0x00007ffd58d40000 - 0x00007ffd58d5e000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\dtypes.cp38-win_amd64.pyd
+0x00007ffd58750000 - 0x00007ffd5878c000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\conversion.cp38-win_amd64.pyd
+0x00007ffd68dc0000 - 0x00007ffd68dcf000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\base.cp38-win_amd64.pyd
+0x00007ffd54950000 - 0x00007ffd54984000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\nattype.cp38-win_amd64.pyd
+0x00007ffd610f0000 - 0x00007ffd610ff000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\np_datetime.cp38-win_amd64.pyd
+0x00007ffd54390000 - 0x00007ffd543c5000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\timezones.cp38-win_amd64.pyd
+0x000001d579e90000 - 0x000001d579e93000 	C:\WINDOWS\SYSTEM32\tzres.dll
+0x00007ffd53f70000 - 0x00007ffd53fad000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\tzconversion.cp38-win_amd64.pyd
+0x00007ffd54930000 - 0x00007ffd54942000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\ccalendar.cp38-win_amd64.pyd
+0x00007ffd4cc20000 - 0x00007ffd4cc72000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\parsing.cp38-win_amd64.pyd
+0x00007ffd3f930000 - 0x00007ffd3f9f8000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\offsets.cp38-win_amd64.pyd
+0x00007ffd3fa90000 - 0x00007ffd3faf1000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\timedeltas.cp38-win_amd64.pyd
+0x00007ffd53c20000 - 0x00007ffd53c60000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\fields.cp38-win_amd64.pyd
+0x00007ffd4e700000 - 0x00007ffd4e74e000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\strptime.cp38-win_amd64.pyd
+0x00007ffd3f2b0000 - 0x00007ffd3f318000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\timestamps.cp38-win_amd64.pyd
+0x00007ffd51c90000 - 0x00007ffd51ca3000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\properties.cp38-win_amd64.pyd
+0x00007ffd40860000 - 0x00007ffd408ba000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\period.cp38-win_amd64.pyd
+0x00007ffd511f0000 - 0x00007ffd51224000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs\vectorized.cp38-win_amd64.pyd
+0x00007ffd51c70000 - 0x00007ffd51c82000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\ops_dispatch.cp38-win_amd64.pyd
+0x00007ffd3d8b0000 - 0x00007ffd3d9f4000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\algos.cp38-win_amd64.pyd
+0x00007ffd3e8c0000 - 0x00007ffd3e939000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\lib.cp38-win_amd64.pyd
+0x00007ffd4e7f0000 - 0x00007ffd4e816000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslib.cp38-win_amd64.pyd
+0x00007ffd4cfd0000 - 0x00007ffd4cffb000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\hashing.cp38-win_amd64.pyd
+0x00007ffd407d0000 - 0x00007ffd40802000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\ops.cp38-win_amd64.pyd
+0x00007ffd42b20000 - 0x00007ffd42b47000 	C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\numexpr\interpreter.cp38-win_amd64.pyd
+0x00007ffd7aa30000 - 0x00007ffd7aabd000 	C:\WINDOWS\SYSTEM32\MSVCP140.dll
+0x00007ffd1eae0000 - 0x00007ffd1fbcb000 	C:\Users\bitcamp\.conda\envs\venv\Library\bin\mkl_rt.1.dll
+0x00007ffd7a9e0000 - 0x00007ffd7a9ec000 	C:\WINDOWS\SYSTEM32\VCRUNTIME140_1.dll
+0x00007ffd849f0000 - 0x00007ffd84a02000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffd4cf90000 - 0x00007ffd4cfa9000 	C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\bottleneck\reduce.cp38-win_amd64.pyd
+0x00007ffd60eb0000 - 0x00007ffd60eba000 	C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\bottleneck\nonreduce.cp38-win_amd64.pyd
+0x00007ffd60bc0000 - 0x00007ffd60bcf000 	C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\bottleneck\nonreduce_axis.cp38-win_amd64.pyd
+0x00007ffd42350000 - 0x00007ffd42369000 	C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\bottleneck\move.cp38-win_amd64.pyd
+0x00007ffd407b0000 - 0x00007ffd407c8000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\arrays.cp38-win_amd64.pyd
+0x00007ffd3e400000 - 0x00007ffd3e475000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\index.cp38-win_amd64.pyd
+0x00007ffd3cf00000 - 0x00007ffd3d0d8000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\join.cp38-win_amd64.pyd
+0x00007ffd3caf0000 - 0x00007ffd3cbb8000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\sparse.cp38-win_amd64.pyd
+0x00007ffd3e870000 - 0x00007ffd3e8b1000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\reduction.cp38-win_amd64.pyd
+0x00007ffd60b80000 - 0x00007ffd60b90000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\indexing.cp38-win_amd64.pyd
+0x00007ffd3e3b0000 - 0x00007ffd3e3f5000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\internals.cp38-win_amd64.pyd
+0x00007ffd3deb0000 - 0x00007ffd3dee1000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\writers.cp38-win_amd64.pyd
+0x00007ffd3de60000 - 0x00007ffd3deb0000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\window\aggregations.cp38-win_amd64.pyd
+0x00007ffd3f780000 - 0x00007ffd3f7a9000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\window\indexers.cp38-win_amd64.pyd
+0x00007ffd3d6e0000 - 0x00007ffd3d71d000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\reshape.cp38-win_amd64.pyd
+0x00007ffd3c5a0000 - 0x00007ffd3c685000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\groupby.cp38-win_amd64.pyd
+0x00007ffd3ce90000 - 0x00007ffd3cef1000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\parsers.cp38-win_amd64.pyd
+0x00007ffd3f290000 - 0x00007ffd3f2a5000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\json.cp38-win_amd64.pyd
+0x00007ffd3f220000 - 0x00007ffd3f236000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\testing.cp38-win_amd64.pyd
+0x00007ffd3c050000 - 0x00007ffd3c120000 	C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\brotli\_brotli.pyd
+0x00007ffd3d6a0000 - 0x00007ffd3d6d4000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\_cffi_backend.cp38-win_amd64.pyd
+0x00007ffd607b0000 - 0x00007ffd607b7000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\matplotlib\_c_internal_utils.cp38-win_amd64.pyd
+0x00007ffd87a20000 - 0x00007ffd8815f000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ffd3d430000 - 0x00007ffd3d461000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\pyexpat.pyd
+0x00007ffd3de30000 - 0x00007ffd3de5d000 	C:\Users\bitcamp\.conda\envs\venv\DLLs\_elementtree.pyd
+0x00007ffd1e7c0000 - 0x00007ffd1ead8000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\PIL\_imaging.cp38-win_amd64.pyd
+0x00007ffd3d880000 - 0x00007ffd3d8ac000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\matplotlib\_path.cp38-win_amd64.pyd
+0x00007ffd3c500000 - 0x00007ffd3c599000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\matplotlib\ft2font.cp38-win_amd64.pyd
+0x00007ffd3d390000 - 0x00007ffd3d3b2000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\kiwisolver.cp38-win_amd64.pyd
+0x00007ffd3d220000 - 0x00007ffd3d255000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\matplotlib\_image.cp38-win_amd64.pyd
+0x00007ffd3d1a0000 - 0x00007ffd3d1e0000 	C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\matplotlib\backends\_backend_agg.cp38-win_amd64.pyd
+0x00007ffd36e30000 - 0x00007ffd37052000 	C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\PyQt5\QtCore.pyd
+0x000000006ca90000 - 0x000000006cf78000 	C:\Users\bitcamp\.conda\envs\venv\Library\bin\Qt5Core.dll
+0x00007ffd3e390000 - 0x00007ffd3e3a9000 	C:\Users\bitcamp\.conda\envs\venv\Library\bin\zlib.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\bitcamp\.conda\envs\venv;C:\WINDOWS\SYSTEM32;C:\Users\bitcamp\.conda\envs\venv\DLLs;C:\Users\bitcamp\.conda\envs\venv\Library\bin;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\.libs;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\core;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\linalg;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\fft;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\numpy\random;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\tslibs;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\numexpr;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\bottleneck;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\pandas\_libs\window;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\brotli;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\matplotlib;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\PIL;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\matplotlib\backends;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\PyQt5;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\__check_build;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\.libs;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\_lib;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\sparse;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\sparse\csgraph;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\utils;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\psutil;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\spatial;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\linalg;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\special;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\spatial\transform;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\ndimage;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\optimize;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\sparse\linalg\isolve;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\sparse\linalg\dsolve;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\sparse\linalg\eigen\arpack;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\optimize\_trlib;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\optimize\_lsq;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\optimize\_highs;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\integrate;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\interpolate;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\stats;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\stats\_boost;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\preprocessing;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\metrics\cluster;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\metrics;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\markupsafe;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\regex;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\feature_extraction;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\svm;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\linear_model;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\sklearn\datasets;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\scipy\io\matlab;C:\Users\bitcamp\AppData\Roaming\Python\Python38\site-packages\lxml;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\MySQLdb;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\psycopg2;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\yaml;c:\Program Files\HP\HP ProtectTools Security Manager\Bin;C:\Users\bitcamp\.conda\envs\venv\tcl\reg1.3;C:\Windows\System32\IME\IMEKR;C:\Windows\System32\IME\shared;C:\Program Files\Java\jdk-11\bin\server;C:\Program Files\Java\jdk-11\bin
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF8 -ea -Xmx1024m 
+java_command: <unknown>
+java_class_path (initial): C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\bin;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\*;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\jhannanum-0.8.4.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\kkma-2.0.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\aho-corasick.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\shineware-common-1.0.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\shineware-ds-1.0.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\komoran-3.0.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\snakeyaml-1.12.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\scala-library-2.12.3.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\open-korean-text-2.1.0.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\twitter-text-1.14.7.jar;C:\Users\bitcamp\.conda\envs\venv\lib\site-packages\konlpy\java\*
+Launcher Type: generic
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 2                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 8                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 266338304                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1073741824                                {product} {command line}
+   size_t MaxNewSize                               = 643825664                                 {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5835340                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122911450                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122911450                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-11
+PATH=C:\Users\bitcamp\.conda\envs\venv;C:\Users\bitcamp\.conda\envs\venv\Library\mingw-w64\bin;C:\Users\bitcamp\.conda\envs\venv\Library\usr\bin;C:\Users\bitcamp\.conda\envs\venv\Library\bin;C:\Users\bitcamp\.conda\envs\venv\Scripts;C:\Users\bitcamp\.conda\envs\venv\bin;C:\ProgramData\Anaconda3\condabin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-11\bin;C:\Program Files\MongoDB\Server\5.0\bin\bin;C:\Program Files\MongoDB\Server\5.0\bin;C:\Program Files\nodejs;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\ProgramData\Anaconda3;C:\ProgramData\Anaconda3\Scripts;C:\ProgramData\Anaconda3\Library\bin;C:\ProgramData\Anaconda3\Library\mingw-w64\bin;.;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\bitcamp\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\PyCharm 2021.2.2\bin;.;C:\Program Files\JetBrains\IntelliJ IDEA 2021.2\bin;.;C:\Program Files\Bandizip;C:\Users\bitcamp\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bitcamp\AppData\Roaming\npm;C:\Users\bitcamp\AppData\Local\Yarn\bin;.
+USERNAME=bitcamp
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 13, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.1202)
+
+CPU:total 8 (initial active 8) (8 cores per cpu, 1 threads per core) family 6 model 158 stepping 13, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, tsc, tscinvbit, bmi1, bmi2, adx, fma
+
+Memory: 4k page, system-wide physical 16222M (6162M free)
+TotalPageFile size 18654M (AvailPageFile size 4383M)
+current process WorkingSet (physical memory assigned to process): 324M, peak: 324M
+current process commit charge ("private bytes"): 1693M, peak: 1793M
+
+vm_info: OpenJDK 64-Bit Server VM (11+28) for windows-amd64 JRE (11+28), built on Aug 23 2018 03:04:58 by "mach5one" with MS VC++ 15.5 (VS2017)
+
+END.
