@@ -40,8 +40,6 @@ class MyRNN(object):
         self.vo = ValueObject()
         self.vo.context = 'admin/rnn/data/'
 
-
-
     def kia_predict(self):
         start_date = '2018-1-4'
         end_date = '2021-9-30'

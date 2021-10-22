@@ -25,5 +25,6 @@ urlpatterns = [
     path('api/tensor/', include('admin.tensor.urls')),
     path('api/iris/', include('admin.iris.urls')),
     path('api/myCV2/', include('admin.myCV2.urls')),
-    path('api/rnn/', include('admin.rnn.urls'))
+    path('api/rnn/', include('admin.rnn.urls')),
+    path('api/ai_trader/', include('admin.ai_trader.urls'))
 ]
