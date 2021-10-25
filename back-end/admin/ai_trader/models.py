@@ -5,12 +5,7 @@ import numpy as np
 import tensorflow as tf
 from collections import deque
 import random
-
 from admin.common.models import ValueObject
-'''
-pip install --upgrade pandas
-pip install --upgrade pandas-datareader
-'''
 
 
 class AITrader(object):
@@ -42,7 +37,6 @@ class AITrader(object):
         model.compile(loss='mse', optimizer = tf.keras.optimizers.Adam(lr=0.001))
         return model
 
-
     def trade(self, state):
         if random.random() <= self.epsilon:
             return random.randrange(self.action_space)
@@ -63,6 +57,7 @@ class AITrader(object):
             model.fit(state, target, epochs=1, verbose=0)
         if self.epsilon > self.epsilon_final:
             self.epsilon *= self.epsilon_decay
+
 
 class Trading:
     def __init__(self):
