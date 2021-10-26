@@ -31,9 +31,9 @@ class NaverMovie(object):
     def naver_process(self):
         ctx = self.vo.context
         # self.web_scraping()
-        corpus = pd.read_table(f'{ctx}naver_movie_dataset.csv', sep=',', encoding='UTF-8')
+        corpus = pd.read_table(f'{ctx}review_train.csv', sep=',', encoding='UTF-8')
         train_X = np.array(corpus)
-        # 카테로기 0 (긍정) 1 (부정)
+        # 카테고리 0 (긍정) 1 (부정)
         n_class0 = len([1 for _, point in train_X if point > 3.5])
         n_class1 = len([train_X]) - n_class0
         counts = defaultdict(lambda: [0, 0])
