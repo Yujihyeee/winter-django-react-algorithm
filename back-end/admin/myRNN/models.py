@@ -38,7 +38,7 @@ plt.rcParams['axes.unicode_minus'] = False
 class MyRNN(object):
     def __init__(self):
         self.vo = ValueObject()
-        self.vo.context = 'admin/rnn/data/'
+        self.vo.context = 'admin/myRNN/data/'
 
     def kia_predict(self):
         start_date = '2018-1-4'
@@ -92,4 +92,3 @@ class MyRNN(object):
         plt.xlabel('year', size=15)
         plt.ylabel('price', size=15)
         plt.savefig(f'{self.vo.context}ram_price_prediction.png')
-
