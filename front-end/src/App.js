@@ -1,33 +1,27 @@
-import React from "react";
-import { Route,Switch, Redirect } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { Navi, Home } from "common";
-import { BackTracking, BruteForce, DivideAndConquer, DynamicAndProgramming, Greedy } from "features/algorithms";
-//import { Counter } from "features/counter";
-import { CounterOld } from "features/counterOld";
-import { Linear, NonLinear, Mathematics } from "features/datastructure";
-import { TodoInput, TodoList, Todo } from "features/todos";
-import { UserJoin, UserList, SignIn, SignUp } from "features/user";
-import { store } from 'app/store';
+import React from 'react';
+import { Route, Redirect, Switch } from 'react-router-dom'
+import { UserAdd, UserDetail, UserList, UserLogin, UserModify, UserRemove } from 'features/user/index'
+import { Home, Navigation } from "features/common/index";
+import { BrowserRouter as Router } from 'react-router-dom'
 
-const App = () => (
-    <Provider store={store}>
-      <Navi/>
-        <Switch>
-          <Route exact path = '/' component = {Home}/>
-          <Redirect from='/home' to= { '/' }/>
-          <Route exact path = '/counter-old' component = {CounterOld}/>
-          <Route exact path = '/todo' component = {Todo}/>
-          <Route exact path = '/sign-up' component = {SignUp}/>
-          <Route exact path = '/mathematics' component = {Mathematics}/>
-          <Route exact path = '/linear' component = {Linear}/>
-          <Route exact path = '/nonLinear' component = {NonLinear}/>
-          <Route exact path = '/back-tracking' component = {BackTracking}/>
-          <Route exact path = '/brute-force' component = {BruteForce}/>
-          <Route exact path = '/divide' component = {DivideAndConquer}/>
-          <Route exact path = '/dynamic' component = {DynamicAndProgramming}/>
-          <Route exact path = '/greedy' component = {Greedy}/>
-        </Switch>
-    </Provider>
-)
-export default App
+const App= () => {
+  return (
+    <div className="App">
+      <Router>
+      <Navigation/>
+      <Switch>
+        <Route exact path='/' component= {Home}/>
+        <Redirect from='/home' to ={'/'}/>
+        <Route exact path='/users/add' component={UserAdd}/>
+        <Route exact path='/users/detail' component={UserDetail}/>
+        <Route exact path='/users/list' component={UserList}/>
+        <Route exact path='/users/login' component={UserLogin}/>
+        <Route exact path='/users/modify' component={UserModify}/>
+        <Route exact path='/users/remove' component={UserRemove}/>
+      </Switch>
+      </Router>
+    </div>
+  );
+}
+
+export default App;
