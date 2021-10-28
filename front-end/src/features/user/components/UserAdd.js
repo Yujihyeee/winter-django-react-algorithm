@@ -4,11 +4,11 @@ import { useHistory  } from 'react-router-dom';
 
 export default function UserAdd() {
     const history = useHistory()
-    const SERVER = 'http://localhost:8080'
+    const SERVER = 'http://localhost:8000'
     const [join, setJoin] = useState({
-        username:'', password:'', email:'', name:'', regDate: new Date().toLocaleDateString()
+        username:'', password:'', email:'', name:'', birth: new Date().toLocaleDateString(), address:''
     })
-    const {username, password, email, name} = join
+    const {username, password, email, name, birth, address} = join
     const handleChange = e => {
         const { value, name } = e.target
         setJoin({
@@ -57,7 +57,7 @@ export default function UserAdd() {
             </li>
             <li>
                 <label>
-                    비밀 번호 : <input type="password" id="password" name="password" value={password} onChange={handleChange}/>
+                    비밀번호 : <input type="password" id="password" name="password" value={password} onChange={handleChange}/>
                 </label>
             </li>
             <li>
@@ -65,11 +65,20 @@ export default function UserAdd() {
                     이름 : <input type="text" id="name" name="name" value={name} onChange={handleChange}/>
                 </label>
             </li>
-           
+            <li>
+                <label>
+                    주소 : <input type="text" id="address" name="address" value={address} onChange={handleChange}/>
+                </label>
+            </li>
+            <li>
+                <label>
+                    가입일자 : <input type="text" id="birth" name="birth" value={birth} onChange={handleChange}/>
+                </label>
+                <small>하이픈 없이 입력</small>
+            </li>
             <li>
                 <input type="submit" value="회원가입"/>
             </li>
-
         </ul>
     </form>
     </div>

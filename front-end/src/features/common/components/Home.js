@@ -13,7 +13,7 @@ export default function Home() {
       {sessionUser !== '' && <input type="button" value="로그아웃" onClick={logout}/>}
       <h1>시간이란...</h1>
       <p>내일 죽을 것처럼 오늘을 살고 
-          영원히 살 것처럼 내일을 꿈구어라.</p>
+          영원히 살 것처럼 내일을 꿈꾸어라.</p>
        {sessionUser !== '' ?<h1>{sessionUser.username} 접속중 ...</h1>
        :
        <><button onClick = {e => history.push('/users/add')}>회원가입</button>
