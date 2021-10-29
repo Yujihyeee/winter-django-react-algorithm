@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useHistory  } from 'react-router-dom';
 
 export default function UserLogin() {
-  const SERVER = 'http://localhost:8080/api'
+  const SERVER = 'http://localhost:8000/api'
   const [login, setLogin] = useState({})
   const {username, password} = login
   const history = useHistory()
@@ -44,7 +44,6 @@ export default function UserLogin() {
       alert('접속 실패' + err)
       changeNull(['username','password'])
     })
-
   }
   const userLogin = loginRequest => 
    axios.post(`${SERVER}/users/login`, JSON.stringify(loginRequest),{headers})

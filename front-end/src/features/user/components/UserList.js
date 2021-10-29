@@ -6,7 +6,7 @@ import { UserListForm } from '..';
 export default function UserList() {
   const [list, setList] = useState([])
  
-  const SERVER = 'http://localhost:8080'
+  const SERVER = 'http://localhost:8000'
   const fetchList = () => {
       axios.get(`${SERVER}/users`)
       .then(res => setList(res.data) )

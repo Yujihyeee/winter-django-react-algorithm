@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.parsers import JSONParser
 
-from admin.user.models import Member
+from admin.user.models import User
 from admin.user.serializer import UserSerializer
 
 
@@ -12,7 +12,7 @@ from admin.user.serializer import UserSerializer
 @parser_classes([JSONParser])
 def users(request):
     if request.method == 'GET':
-        all_users = Member.objects.all()
+        all_users = User.objects.all()
         serializer = UserSerializer(all_users, many=True)
         return JsonResponse(data=serializer, safe=False)
     elif request.method == 'POST':
@@ -22,17 +22,30 @@ def users(request):
             return JsonResponse({'result': f'Welcome, {serializer.data.get("name")}'}, status=201)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'PUT':
-
         return None
 
 
-@api_view(['GET', 'POST'])
+@api_view(['DELETE'])
 @parser_classes([JSONParser])
-def users(request, id):
+def remove(request, id):
     pass
 
 
 @api_view(['POST'])
 @parser_classes([JSONParser])
 def login(request):
-    pass
+    try:
+        loginUser = request.data
+        dbUser = User.objects.get(pk=loginUser['username'])
+        if loginUser['password'] == dbUser.password:
+            userSerializer = UserSerializer(dbUser, many=False)
+            ic(userSerializer)
+            return JsonResponse(data=userSerializer.data, safe=False)
+        else:
+            print('******** 비밀번호 오류')
+            return JsonResponse(data={'result': 'PASSWORD-FAIL'}, status=201)
+
+    except User.DoesNotExist:
+        print('*' * 50)
+        print('******** Username 오류')
+        return JsonResponse(data={'result': 'USERNAME-FAIL'}, status=201)

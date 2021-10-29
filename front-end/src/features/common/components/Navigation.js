@@ -7,7 +7,7 @@ export default function Navigation() {
         <Nav>
             <NavList>
                 <NavItem><Link to = '/home'>Home</Link></NavItem>
-                <NavItem><Link to="/users/add">UserAdd</Link></NavItem>
+                <NavItem><Link to="/users/join">UserAdd</Link></NavItem>
                 <NavItem><Link to="/users/detail">UserDetail</Link></NavItem>
                 <NavItem><Link to="/users/list">UserList</Link></NavItem>
                 <NavItem><Link to="/users/login">UserLogin</Link></NavItem>
